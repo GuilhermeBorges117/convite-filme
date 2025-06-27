@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convite Especial ❤️</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f48fb1, #f06292);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      position: center; /* IMPORTANTE para o absolute funcionar */
+      overflow: hidden;   /* impede sair da tela */
+    }
+
+    h1 {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .button-container {
+      position: center;
+      width: 100%;
+      height: 200px;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      position: absolute;
+    }
+
+    #yes {
+      background-color: #4caf50;
+      color: white;
+      left: 40%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #yes:hover {
+      background-color: #45a049;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    #no {
+      background-color: #f44336;
+      color: white;
+      left: 60%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      color: #333;
+      border: 3px solid #4caf50;
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      display: none;
+      font-size: 1.3em;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Amor, bora ver um filme hoje à noite? ❤️</h1>
+  <div class="button-container">
+    <button id="yes">Sim</button>
+    <button id="no">Não</button>
+  </div>
+
+  <div class="popup" id="popup">
+    Comprarei algo gostoso pra gente comer! 🍕🍿🥤
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const popup = document.getElementById("popup");
+
+    noBtn.addEventListener("mouseover", () => {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      // efeito giro e cor
+      noBtn.style.backgroundColor = "#ff9800";
+      noBtn.style.transform = "translate(-50%, -50%) rotate(360deg) scale(1.2)";
+      setTimeout(() => {
+        noBtn.style.transform = "translate(-50%, -50%) rotate(0deg) scale(1)";
+        noBtn.style.backgroundColor = "#f44336";
+      }, 300);
+    });
+
+    yesBtn.addEventListener("click", () => {
+      popup.style.display = "block";
+    });
+  </script>
+</body>
+</html>
